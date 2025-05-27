@@ -114,3 +114,23 @@ p.success {
         width: 100%;
     }
 }
+
+/* Remember Me styling */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+.remember-me label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 16px;
+}

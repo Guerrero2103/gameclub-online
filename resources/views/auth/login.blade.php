@@ -12,6 +12,11 @@
         <label for="password">Wachtwoord:</label>
         <input type="password" name="password" required>
 
+        <div class="remember-me">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Onthoud mij</label>
+        </div>
+
         <button type="submit">Login</button>
     </form>
 @endsection

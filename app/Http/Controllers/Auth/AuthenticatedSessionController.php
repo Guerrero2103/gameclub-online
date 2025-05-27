@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->boolean('remember')) {
+            Auth::setRememberDuration(43200); // 30 dagen in minuten
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
