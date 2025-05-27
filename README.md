@@ -133,6 +133,3 @@ Dit project is gebouwd met behulp van het Laravel framework en maakt gebruik van
 
 *   **AI Code Assistent Chatlog:** De gesprekken met de AI code assistent zijn gebruikt ter ondersteuning bij het ontwikkelen, debuggen en verbeteren van specifieke delen van de code en documentatie. Je kunt de chatgeschiedenis van deze sessie exporteren en hier eventueel als apart bestand toevoegen of relevante fragmenten kopiëren.
 
-## Licentie
-
-[Voeg hier eventueel de licentie van je project toe, bijvoorbeeld MIT of GPL]
