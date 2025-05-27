@@ -1,61 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gameclub Online Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Dit is een webproject voor een online gameclub, gebouwd met het Laravel framework.
 
-## About Laravel
+## Projectbeschrijving en Functionaliteiten
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Dit project simuleert een platform voor een online gameclub, met functionaliteiten gericht op nieuwsdeling, gebruikersinteractie, en administratie.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Het project bevat de volgende onderdelen:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*   **Nieuws:** Gebruikers kunnen nieuwsitems bekijken. Beheerders hebben volledige CRUD (Create, Read, Update, Delete) rechten voor nieuwsitems via het beheergedeelte. Geïmplementeerd in:
+    *   `app/Http/Controllers/NewsController.php`
+    *   `routes/web.php` (routes beginnend met `/news`)
+    *   `resources/views/news/` (views zoals index, show, form)
 
-## Learning Laravel
+*   **FAQ (Veelgestelde Vragen):** Toont veelgestelde vragen gegroepeerd per categorie. Beheerders kunnen zowel FAQ-items als categorieën toevoegen, bewerken en verwijderen via een beheerinterface. Geïmplementeerd in:
+    *   `app/Http/Controllers/FaqController.php`
+    *   `app/Models/HelpEntry.php` (Model voor FAQ items)
+    *   `app/Models/HelpGroup.php` (Model voor FAQ categorieën)
+    *   `database/migrations/*_create_help_entries_table.php`
+    *   `database/migrations/*_create_help_groups_table.php`
+    *   `routes/web.php` (routes beginnend met `/faq`)
+    *   `resources/views/faq/` (views zoals index, manage, form)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+*   **Contact:** Biedt een contactformulier voor bezoekers. Ingezonden berichten zijn zichtbaar voor beheerders in een speciaal dashboard. Geïmplementeerd in:
+    *   `app/Http/Controllers/ContactController.php`
+    *   `app/Models/ContactMessage.php` (Model voor contactberichten)
+    *   `database/migrations/*_create_contact_messages_table.php`
+    *   `routes/web.php` (routes beginnend met `/contact` en `/admin/contact`)
+    *   `resources/views/contact/` (views zoals create)
+    *   `resources/views/admin/contact/` (views voor het beheer)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+*   **Gebruikersbeheer (Admin):** Beheerders kunnen gebruikersaccounts bekijken en beheren, inclusief het toewijzen van rollen (`admin`, `gamer`, etc.). Dit maakt gebruik van Laravel's ingebouwde authenticatie en resource controllers. Geïmplementeerd in:
+    *   `app/Http/Controllers/Admin/UserController.php`
+    *   `app/Models/User.php` (Model voor gebruikers)
+    *   `database/migrations/*_create_users_table.php`
+    *   `database/migrations/*_add_role_to_users_table.php`
+    *   `routes/web.php` (routes onder de `/admin/users` resource)
+    *   `resources/views/admin/users/` (views voor gebruikersbeheer)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+*   **Authenticatie en Autorisatie:** Het systeem ondersteunt gebruikersregistratie, login en logout voor zowel normale gebruikers als beheerders. Autorisatie met Gates zorgt ervoor dat alleen geautoriseerde gebruikers toegang hebben tot specifieke functionaliteiten (bijvoorbeeld FAQ/nieuwsbeheer, contactberichten). Geïmplementeerd in:
+    *   `app/Models/User.php`
+    *   `app/Providers/AuthServiceProvider.php` (voor Gates/Policies)
+    *   `routes/web.php` (auth routes en middleware)
+    *   Controllers (gebruik van `$this->authorize()` of `Gate::allows()`)
+    *   Views (gebruik van `@can` of `@cannot`)
 
-## Laravel Sponsors
+*   **Profiel:** Ingelogde gebruikers kunnen hun profielinformatie bekijken en bijwerken. Geïmplementeerd in:
+    *   `app/Http/Controllers/ProfileController.php`
+    *   `routes/web.php` (routes beginnend met `/profile`)
+    *   `resources/views/profile/` (views zoals edit)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installatiehandleiding
 
-### Premium Partners
+Volg deze stappen om het project lokaal te installeren en te draaien:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1.  Zorg ervoor dat je PHP (versie 8.2 of hoger aanbevolen), Composer en Node.js/npm hebt geïnstalleerd.
+2.  Kloon dit project naar je lokale computer. Je kunt dit doen met Git:
+    ```bash
+    git clone <url_van_je_github_repo>
+    ```
+3.  Open de terminal en navigeer naar de projectmap:
+    ```bash
+    cd naam_van_je_projectmap
+    ```
+4.  Installeer de PHP-afhankelijkheden met Composer:
+    ```bash
+    composer install
+    ```
+5.  Kopieer het `.env.example` bestand naar `.env` en pas de database-instellingen aan. Zorg ervoor dat je een MySQL database hebt aangemaakt en vul de juiste gegevens in het `.env` bestand (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).
+    ```bash
+    cp .env.example .env
+    ```
+    Open het `.env` bestand en configureer je databaseverbinding.
+6.  Genereer een applicatiesleutel:
+    ```bash
+    php artisan key:generate
+    ```
+7.  Draai de database-migraties om de benodigde tabellen aan te maken. Dit commando maakt ook standaard tabellen aan voor gebruikers, wachtwoordresets, etc.
+    ```bash
+    php artisan migrate
+    ```
+8.  (Optioneel) Vul de database met testdata door seeders te draaien. Dit kan handig zijn om snel testgebruikers of inhoud te hebben:
+    ```bash
+    php artisan db:seed
+    ```
+9.  Installeer de Node.js afhankelijkheden met npm of Yarn:
+    ```bash
+    npm install
+    # of
+    yarn install
+    ```
+10. Compileer de frontend assets (CSS en JavaScript):
+    ```bash
+    npm run dev
+    # of
+    yarn dev
+    ```
+    Voor een productie build gebruik je:
+    ```bash
+    npm run build
+    # of
+    yarn build
+    ```
+11. Start de lokale ontwikkelserver:
+    ```bash
+    php artisan serve
+    ```
 
-## Contributing
+Het project zou nu beschikbaar moeten zijn via `http://127.0.0.1:8000` (of de poort die de `serve` commando aangeeft in je terminal).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Screenshots van de Applicatie
 
-## Code of Conduct
+Voeg hier screenshots toe van de belangrijkste pagina's en functionaliteiten van je applicatie om een visuele indruk te geven.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Gebruikte Bronnen
 
-## Security Vulnerabilities
+Dit project is gebouwd met behulp van het Laravel framework en maakt gebruik van de Tailwind CSS utility-first CSS library. De volgende bronnen waren nuttig tijdens de ontwikkeling:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+*   **Laravel Documentatie:** De officiële en uitgebreide documentatie voor het Laravel PHP framework. Een essentiële bron voor het begrijpen van het framework en de vele functies.
+    [https://laravel.com/docs](https://laravel.com/docs)
 
-## License
+*   **Tailwind CSS Documentatie:** De officiële documentatie voor Tailwind CSS, nuttig voor het stylen van de gebruikersinterface.
+    [https://tailwindcss.com/docs](https://tailwindcss.com/docs)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+*   **PHP Documentatie:** De officiële handleiding van de PHP programmeertaal.
+    [https://www.php.net/docs](https://www.php.net/docs)
+
+*   **MySQL Documentatie:** Documentatie voor de MySQL database, gebruikt als het opslagsysteem voor de applicatiegegevens.
+    [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)
+
+*   **Algemene Web Development Tutorials en Gidsen:** Diverse online bronnen, tutorials en community forums (zoals Stack Overflow, Laracasts, etc.) die hebben geholpen bij het oplossen van specifieke problemen en het leren van best practices in webontwikkeling met het Laravel framework.
+
+*   **AI Code Assistent Chatlog:** De gesprekken met de AI code assistent zijn gebruikt ter ondersteuning bij het ontwikkelen, debuggen en verbeteren van specifieke delen van de code en documentatie. Je kunt de chatgeschiedenis van deze sessie exporteren en hier eventueel als apart bestand toevoegen of relevante fragmenten kopiëren.
+
+## Licentie
+
+[Voeg hier eventueel de licentie van je project toe, bijvoorbeeld MIT of GPL]

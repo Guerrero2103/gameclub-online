@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class NewsController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $newsItems = News::latest()->paginate(10);
@@ -22,11 +25,14 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('news.create');
+        // dd(auth()->user()); // Removed debugging line
+        $this->authorize('manage-news'); // Re-enabled authorization
+        return view('news.add'); // Return the new view
     }
 
     public function store(Request $request)
     {
+        $this->authorize('manage-news');
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -45,11 +51,13 @@ class NewsController extends Controller
 
     public function edit(News $news)
     {
+        $this->authorize('manage-news');
         return view('news.edit', compact('news'));
     }
 
     public function update(Request $request, News $news)
     {
+        $this->authorize('manage-news');
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -71,9 +79,7 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
-        if (!auth()->user()->isAdmin()) {
-            abort(403);
-        }
+        $this->authorize('manage-news');
 
         if ($news->image) {
             Storage::disk('public')->delete($news->image);

@@ -28,13 +28,17 @@ class User extends Authenticatable
     ];
 
     public function playerCard()
-{
-    return $this->hasOne(PlayerCard::class, 'user_id');
-}
-public function isAdmin()
-{
-    return $this->role === 'admin';
-}
+    {
+        return $this->hasOne(PlayerCard::class, 'user_id');
+    }
 
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 
+    public function games()
+    {
+        return $this->belongsToMany(Game::class);
+    }
 }

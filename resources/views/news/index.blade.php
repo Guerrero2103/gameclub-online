@@ -11,7 +11,7 @@
     {{-- Alleen admin ziet deze knop --}}
     @if(auth()->check() && auth()->user()->isAdmin())
         <div style="margin-bottom: 1rem;">
-            <a href="{{ route('news.create') }}" class="btn btn-primary">➕ Nieuws toevoegen</a>
+            <a href="{{ route('news.make') }}" class="btn btn-primary">➕ Nieuws toevoegen</a>
         </div>
     @endif
 

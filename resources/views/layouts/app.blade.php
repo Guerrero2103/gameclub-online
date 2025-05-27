@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
-    <link rel="stylesheet" href="{{ asset('css/gameclub.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/gameclub.css') }}">
 </head>
 <body>
     <header>
@@ -14,6 +14,10 @@
             <a href="/news">Nieuws</a> |
             <a href="/faq">FAQ</a> |
             <a href="/contact">Contact</a> |
+
+            @can('manage-users')
+                <a href="{{ route('admin.users.index') }}">Gebruikers Beheren</a> |
+            @endcan
 
             @auth
                 @if(Auth::user()->profile_picture)
