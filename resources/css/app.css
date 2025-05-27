@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Algemene achtergrond en tekst */
+body {
+    background-color: #0f0f1f;
+    color: #e0e0ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ Navigatiebalk */
+nav {
+    background-color: #1a1a2e;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #0ff;
+    text-align: center;
+}
+
+nav a {
+    color: #0ff;
+    margin: 0 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #0ff;
+}
+
+/* ✅ Koppen */
+h1, h2 {
+    color: #00ffff;
+    margin-bottom: 15px;
+}
+
+/* ✅ Invoervelden */
+input,
+textarea,
+select,
+form input,
+form textarea,
+form select {
+    background-color: #181828 !important;
+    color: #e0e0ff !important;
+    border: 1px solid #0ff;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* ✅ Focus effect */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 5px #00ffff;
+}
+
+/* ✅ Placeholder kleur */
+input::placeholder,
+textarea::placeholder {
+    color: #aaa;
+}
+
+/* ✅ Labels */
+label {
+    color: #e0e0ff;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: bold;
+}
+
+/* ✅ Knoppen */
+button {
+    background-color: #0ff;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #00d9d9;
+}
+
+/* ❌ Verwijderknop specifiek */
+form[action*="destroy"] button {
+    background-color: #ff4444;
+    color: white;
+}
+
+form[action*="destroy"] button:hover {
+    background-color: #e60000;
+}
