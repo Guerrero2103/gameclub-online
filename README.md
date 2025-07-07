@@ -1,135 +1,86 @@
-# Gameclub Online Project
+# Gameclub Online
 
-Dit is een webproject voor een online gameclub, gebouwd met het Laravel framework.
+Dit is een webproject voor een online gameclub, gemaakt met Laravel.
 
-## Projectbeschrijving en Functionaliteiten
+## Over het project
 
-Dit project simuleert een platform voor een online gameclub, met functionaliteiten gericht op nieuwsdeling, gebruikersinteractie, en administratie.
+Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen te stellen en contact te maken. De site is bedoeld als oefening voor het vak Backend Web en laat zien dat ik met Laravel kan werken.
 
-Het project bevat de volgende onderdelen:
+## Belangrijkste onderdelen
 
-*   **Nieuws:** Gebruikers kunnen nieuwsitems bekijken. Beheerders hebben volledige CRUD (Create, Read, Update, Delete) rechten voor nieuwsitems via het beheergedeelte. Geïmplementeerd in:
-    *   `app/Http/Controllers/NewsController.php`
-    *   `routes/web.php` (routes beginnend met `/news`)
-    *   `resources/views/news/` (views zoals index, show, form)
+- **Registratie en login:** Iedereen kan een account aanmaken en inloggen.
+- **Gebruikersrollen:** Er zijn gewone gebruikers en admins. Admins kunnen andere gebruikers beheren en admin maken.
+- **Profielpagina:** Elke gebruiker heeft een eigen profiel met gebruikersnaam, verjaardag, profielfoto en een korte tekst over zichzelf. Profielen zijn voor iedereen zichtbaar.
+- **Nieuws:** Admins kunnen nieuws toevoegen, bewerken en verwijderen. Iedereen kan nieuws lezen en reacties plaatsen.
+- **FAQ:** Veelgestelde vragen zijn gegroepeerd per categorie. Admins kunnen vragen en categorieën beheren. Gebruikers kunnen zelf vragen voorstellen.
+- **Contact:** Bezoekers kunnen een bericht sturen via het contactformulier. Admins kunnen deze berichten bekijken.
+- **Reactiesysteem:** Gebruikers kunnen reageren op nieuwsitems.
+- **Beveiliging:** Alleen admins kunnen bij admin-pagina's. Alle formulieren zijn beveiligd tegen CSRF en XSS.
 
-*   **FAQ (Veelgestelde Vragen):** Toont veelgestelde vragen gegroepeerd per categorie. Beheerders kunnen zowel FAQ-items als categorieën toevoegen, bewerken en verwijderen via een beheerinterface. Geïmplementeerd in:
-    *   `app/Http/Controllers/FaqController.php`
-    *   `app/Models/HelpEntry.php` (Model voor FAQ items)
-    *   `app/Models/HelpGroup.php` (Model voor FAQ categorieën)
-    *   `database/migrations/*_create_help_entries_table.php`
-    *   `database/migrations/*_create_help_groups_table.php`
-    *   `routes/web.php` (routes beginnend met `/faq`)
-    *   `resources/views/faq/` (views zoals index, manage, form)
+## Extra features
 
-*   **Contact:** Biedt een contactformulier voor bezoekers. Ingezonden berichten zijn zichtbaar voor beheerders in een speciaal dashboard. Geïmplementeerd in:
-    *   `app/Http/Controllers/ContactController.php`
-    *   `app/Models/ContactMessage.php` (Model voor contactberichten)
-    *   `database/migrations/*_create_contact_messages_table.php`
-    *   `routes/web.php` (routes beginnend met `/contact` en `/admin/contact`)
-    *   `resources/views/contact/` (views zoals create)
-    *   `resources/views/admin/contact/` (views voor het beheer)
+- Admin dashboard voor contactberichten
+- Reactiesysteem bij nieuws
+- FAQ-suggesties door gebruikers
 
-*   **Gebruikersbeheer (Admin):** Beheerders kunnen gebruikersaccounts bekijken en beheren, inclusief het toewijzen van rollen (`admin`, `gamer`, etc.). Dit maakt gebruik van Laravel's ingebouwde authenticatie en resource controllers. Geïmplementeerd in:
-    *   `app/Http/Controllers/Admin/UserController.php`
-    *   `app/Models/User.php` (Model voor gebruikers)
-    *   `database/migrations/*_create_users_table.php`
-    *   `database/migrations/*_add_role_to_users_table.php`
-    *   `routes/web.php` (routes onder de `/admin/users` resource)
-    *   `resources/views/admin/users/` (views voor gebruikersbeheer)
+## Installatie
 
-*   **Authenticatie en Autorisatie:** Het systeem ondersteunt gebruikersregistratie, login en logout voor zowel normale gebruikers als beheerders. Autorisatie met Gates zorgt ervoor dat alleen geautoriseerde gebruikers toegang hebben tot specifieke functionaliteiten (bijvoorbeeld FAQ/nieuwsbeheer, contactberichten). Geïmplementeerd in:
-    *   `app/Models/User.php`
-    *   `app/Providers/AuthServiceProvider.php` (voor Gates/Policies)
-    *   `routes/web.php` (auth routes en middleware)
-    *   Controllers (gebruik van `$this->authorize()` of `Gate::allows()`)
-    *   Views (gebruik van `@can` of `@cannot`)
+1. Zorg dat je PHP, Composer en Node.js hebt geïnstalleerd.
+2. Download of kloon dit project:
+   ```
+   git clone https://github.com/Guerrero2103/gameclub-online
+   ```
+3. Ga naar de projectmap:
+   ```
+   cd gameclub-online
+   ```
+4. Installeer de PHP-pakketten:
+   ```
+   composer install
+   ```
+5. Installeer de Node.js-pakketten:
+   ```
+   npm install
+   ```
+6. Kopieer het `.env.example` bestand naar `.env` en vul je databasegegevens in.
+7. Maak de database aan en voer de migraties en seeders uit:
+   ```
+   php artisan migrate:fresh --seed
+   ```
+8. Maak een applicatiesleutel aan:
+   ```
+   php artisan key:generate
+   ```
+9. Start de ontwikkelserver:
+   ```
+   php artisan serve
+   ```
+10. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-*   **Profiel:** Ingelogde gebruikers kunnen hun profielinformatie bekijken en bijwerken. Geïmplementeerd in:
-    *   `app/Http/Controllers/ProfileController.php`
-    *   `routes/web.php` (routes beginnend met `/profile`)
-    *   `resources/views/profile/` (views zoals edit)
+## Testaccounts
 
-## Installatiehandleiding
+- **Admin:**  
+  Gebruikersnaam: admin  
+  E-mail: admin@ehb.be  
+  Wachtwoord: Password!321
 
-Volg deze stappen om het project lokaal te installeren en te draaien:
+## Belangrijke bestanden
 
-1.  Zorg ervoor dat je PHP (versie 8.2 of hoger aanbevolen), Composer en Node.js/npm hebt geïnstalleerd.
-2.  Kloon dit project naar je lokale computer. Je kunt dit doen met Git:
-    ```bash
-    git clone <url_van_je_github_repo>
-    ```
-3.  Open de terminal en navigeer naar de projectmap:
-    ```bash
-    cd naam_van_je_projectmap
-    ```
-4.  Installeer de PHP-afhankelijkheden met Composer:
-    ```bash
-    composer install
-    ```
-5.  Kopieer het `.env.example` bestand naar `.env` en pas de database-instellingen aan. Zorg ervoor dat je een MySQL database hebt aangemaakt en vul de juiste gegevens in het `.env` bestand (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).
-    ```bash
-    cp .env.example .env
-    ```
-    Open het `.env` bestand en configureer je databaseverbinding.
-6.  Genereer een applicatiesleutel:
-    ```bash
-    php artisan key:generate
-    ```
-7.  Draai de database-migraties om de benodigde tabellen aan te maken. Dit commando maakt ook standaard tabellen aan voor gebruikers, wachtwoordresets, etc.
-    ```bash
-    php artisan migrate
-    ```
-8.  (Optioneel) Vul de database met testdata door seeders te draaien. Dit kan handig zijn om snel testgebruikers of inhoud te hebben:
-    ```bash
-    php artisan db:seed
-    ```
-9.  Installeer de Node.js afhankelijkheden met npm of Yarn:
-    ```bash
-    npm install
-    # of
-    yarn install
-    ```
-10. Compileer de frontend assets (CSS en JavaScript):
-    ```bash
-    npm run dev
-    # of
-    yarn dev
-    ```
-    Voor een productie build gebruik je:
-    ```bash
-    npm run build
-    # of
-    yarn build
-    ```
-11. Start de lokale ontwikkelserver:
-    ```bash
-    php artisan serve
-    ```
+- `routes/web.php` – Alle routes van de site
+- `app/Http/Controllers/` – Controllers voor de logica
+- `app/Models/` – Modellen voor de database
+- `resources/views/` – Alle pagina's en formulieren
+- `database/seeders/` – Voorbeelddata voor de database
 
-Het project zou nu beschikbaar moeten zijn via `http://127.0.0.1:8000` (of de poort die de `serve` commando aangeeft in je terminal).
+## Screenshots
 
-## Screenshots van de Applicatie
+_Voeg hier enkele screenshots toe van de belangrijkste pagina's (login, dashboard, profiel, nieuws, FAQ, adminbeheer, enz.)_
 
-Voeg hier screenshots toe van de belangrijkste pagina's en functionaliteiten van je applicatie om een visuele indruk te geven.
+## Gebruikte bronnen
 
-## Gebruikte Bronnen
-
-Dit project is gebouwd met behulp van het Laravel framework en maakt gebruik van de Tailwind CSS utility-first CSS library. De volgende bronnen waren nuttig tijdens de ontwikkeling:
-
-*   **Laravel Documentatie:** De officiële en uitgebreide documentatie voor het Laravel PHP framework. Een essentiële bron voor het begrijpen van het framework en de vele functies.
-    [https://laravel.com/docs](https://laravel.com/docs)
-
-*   **Tailwind CSS Documentatie:** De officiële documentatie voor Tailwind CSS, nuttig voor het stylen van de gebruikersinterface.
-    [https://tailwindcss.com/docs](https://tailwindcss.com/docs)
-
-*   **PHP Documentatie:** De officiële handleiding van de PHP programmeertaal.
-    [https://www.php.net/docs](https://www.php.net/docs)
-
-*   **MySQL Documentatie:** Documentatie voor de MySQL database, gebruikt als het opslagsysteem voor de applicatiegegevens.
-    [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)
-
-*   **Algemene Web Development Tutorials en Gidsen:** Diverse online bronnen, tutorials en community forums (zoals Stack Overflow, Laracasts, etc.) die hebben geholpen bij het oplossen van specifieke problemen en het leren van best practices in webontwikkeling met het Laravel framework.
-
-*   **AI Code Assistent Chatlog:** De gesprekken met de AI code assistent zijn gebruikt ter ondersteuning bij het ontwikkelen, debuggen en verbeteren van specifieke delen van de code en documentatie. Je kunt de chatgeschiedenis van deze sessie exporteren en hier eventueel als apart bestand toevoegen of relevante fragmenten kopiëren.
+- [Laravel documentatie](https://laravel.com/docs)
+- [Tailwind CSS documentatie](https://tailwindcss.com/docs)
+- [PHP documentatie](https://www.php.net/docs)
+- [Stack Overflow](https://stackoverflow.com/)
+- AI code assistent chatlog
 

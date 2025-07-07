@@ -10,6 +10,8 @@ use App\Models\News;
 use App\Policies\NewsPolicy;
 use App\Models\User;
 use App\Policies\UserPolicy;
+use App\Models\Comment;
+use App\Policies\CommentPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         HelpEntry::class => FaqPolicy::class,
         News::class => NewsPolicy::class,
         User::class => UserPolicy::class,
+        Comment::class => CommentPolicy::class,
     ];
 
     /**

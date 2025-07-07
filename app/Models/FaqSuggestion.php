@@ -5,23 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PlayerCard extends Model
+class FaqSuggestion extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'username',
-        'birthday',
-        'about',
-        'profile_picture',
         'user_id',
+        'question',
+        'explanation',
+        'approved',
     ];
 
-    /**
-     * Relatie met de bijhorende gebruiker.
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-}
+} 

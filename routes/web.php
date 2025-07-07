@@ -6,7 +6,8 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
-use App\Http\Controllers\Gamer\Auth\LoginController as GamerLoginController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FaqSuggestionController;
 
 Route::get('/', fn() => view('welcome'))->name('home');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
@@ -33,6 +34,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Route for deleting FAQ categories
     Route::delete('/faq/category/{category}', [FaqController::class, 'destroyCategory'])->name('faq.category.destroy');
+
+    Route::post('/faq-suggestions', [FaqSuggestionController::class, 'store'])->name('faq-suggestions.store');
+    Route::get('/admin/faq-suggestions', [FaqSuggestionController::class, 'index'])->name('faq-suggestions.index');
+    Route::post('/admin/faq-suggestions/{suggestion}/approve', [FaqSuggestionController::class, 'approve'])->name('faq-suggestions.approve');
+    Route::delete('/admin/faq-suggestions/{suggestion}', [FaqSuggestionController::class, 'destroy'])->name('faq-suggestions.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -55,14 +61,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', App\Http\Controllers\Admin\UserController::class)->middleware('auth');
 });
 
-Route::prefix('gamer')->name('gamer.')->group(function () {
-    Route::get('login', [GamerLoginController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [GamerLoginController::class, 'login']);
-    Route::post('logout', [GamerLoginController::class, 'logout'])->name('logout');
-    Route::get('dashboard', fn() => view('gamer.dashboard'))->middleware('auth');
-});
-
 // Tijdelijke debug route om de gebruiker rol te controleren
 Route::get('/debug-role', function () {
     return auth()->check() ? auth()->user()->role : 'niet ingelogd';
 });
+
+Route::post('/news/{news}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');

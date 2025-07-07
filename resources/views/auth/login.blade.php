@@ -3,6 +3,16 @@
 @section('content')
     <h2>Inloggen</h2>
 
+    @if ($errors->any())
+        <div class="error" style="color: #ff4444; margin-bottom: 15px;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

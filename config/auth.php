@@ -12,20 +12,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'gamer' => [
-            'driver' => 'session',
-            'provider' => 'gamers',
-        ],
     ],
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-        'gamers' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\GamerAccount::class,
         ],
     ],
 

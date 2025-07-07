@@ -4,9 +4,14 @@
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8">
         <h1 class="text-3xl font-bold">FAQ Beheren</h1>
-        <a href="{{ route('faq.create') }}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors duration-200">
-            <i class="fas fa-plus mr-2"></i>Nieuwe FAQ Toevoegen
-        </a>
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
+            <a href="{{ route('faq.create') }}" style="background: #00e6e6; color: #222; font-weight: bold; padding: 12px 28px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); text-decoration: none; display: inline-block; transition: background 0.2s; cursor: pointer;" onmouseover="this.style.background='#00b3b3'" onmouseout="this.style.background='#00e6e6'">
+                Nieuwe FAQ Toevoegen
+            </a>
+            <a href="{{ route('faq-suggestions.index') }}" style="background: #ffb300; color: #222; font-weight: bold; padding: 12px 28px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); text-decoration: none; display: inline-block; transition: background 0.2s; cursor: pointer;" onmouseover="this.style.background='#ff8800'" onmouseout="this.style.background='#ffb300'">
+                FAQ Suggesties
+            </a>
+        </div>
     </div>
 
     @if(session('success'))

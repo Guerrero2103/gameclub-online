@@ -60,4 +60,16 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'Profiel succesvol bijgewerkt.');
     }
+
+    public function destroy()
+    {
+        $user = Auth::user();
+        // Verwijder gekoppelde spelerkaart indien aanwezig
+        if ($user->playerCard) {
+            $user->playerCard()->delete();
+        }
+        Auth::logout();
+        $user->delete();
+        return redirect('/')->with('success', 'Je account is verwijderd.');
+    }
 }
