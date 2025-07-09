@@ -34,7 +34,7 @@ class UserController extends Controller
     public function create()
     {
         $this->authorize('create', User::class);
-        $roles = ['user', 'admin', 'gamer'];
+        $roles = ['user', 'admin'];
         return view('admin.users.create', compact('roles'));
     }
 
@@ -77,7 +77,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $this->authorize('update', $user);
-        $roles = ['user', 'admin', 'gamer'];
+        $roles = ['user', 'admin'];
         return view('admin.users.edit', compact('user', 'roles'));
     }
 

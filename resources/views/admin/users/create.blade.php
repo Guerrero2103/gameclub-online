@@ -34,9 +34,8 @@
         <div style="margin-bottom: 15px;">
             <label for="role" style="display: block; margin-bottom: 5px;">Rol:</label>
             <select name="role" id="role" required style="width: 100%; padding: 8px; border: 1px solid #0ff; background: #1a1a2e; color: white;">
-                @foreach($roles as $role)
-                    <option value="{{ $role }}" {{ old('role') == $role ? 'selected' : '' }}>{{ ucfirst($role) }}</option>
-                @endforeach
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
             </select>
         </div>
 

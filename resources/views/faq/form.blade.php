@@ -45,7 +45,7 @@
             @enderror
         </div>
 
-        <div id="newCategoryField" class="mb-4 {{ old('category') == 'new' ? '' : 'hidden' }}">
+        <div id="newCategoryField" class="mb-4{{ old('category') == 'new' ? '' : ' hidden' }}">
             <label for="newCategory" class="block text-gray-700 font-medium mb-2">Nieuwe Categorie Naam</label>
             <input type="text" name="newCategory" id="newCategory" 
                    value="{{ old('newCategory') }}"
@@ -82,13 +82,18 @@
 
 @push('scripts')
 <script>
-    document.getElementById('category').addEventListener('change', function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const categorySelect = document.getElementById('category');
         const newCategoryField = document.getElementById('newCategoryField');
-        if (this.value === 'new') {
-            newCategoryField.classList.remove('hidden');
-        } else {
-            newCategoryField.classList.add('hidden');
+        function toggleNewCategoryField() {
+            if (categorySelect.value === 'new') {
+                newCategoryField.classList.remove('hidden');
+            } else {
+                newCategoryField.classList.add('hidden');
+            }
         }
+        categorySelect.addEventListener('change', toggleNewCategoryField);
+        toggleNewCategoryField(); // direct bij laden uitvoeren
     });
 </script>
 @endpush
