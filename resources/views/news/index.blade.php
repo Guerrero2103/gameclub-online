@@ -17,14 +17,32 @@
 
     @foreach($newsItems as $news)
         <article style="margin-bottom: 2rem;">
-            <h3><a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a></h3>
-            <p><small>Gepubliceerd op: {{ \Carbon\Carbon::parse($news->published_at)->format('d-m-Y') }}</small></p>
+            <div style="font-weight:bold; color:#00e6e6; margin-bottom: 2px;">Titel:</div>
+            <h3 style="margin: 0 0 2px 0;"><a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a></h3>
+            <p style="margin: 0 0 6px 0;"><small>Gepubliceerd op: {{ \Carbon\Carbon::parse($news->published_at)->format('d-m-Y') }}</small></p>
 
             @if($news->image)
-                <img src="{{ asset('storage/' . $news->image) }}" alt="Afbeelding" style="max-width: 100%; height: auto;">
+                <img src="{{ asset('storage/' . $news->image) }}" alt="Afbeelding" style="max-width: 100%; height: auto; margin-bottom: 6px;">
             @endif
 
-            <p>{{ \Illuminate\Support\Str::limit($news->content, 150) }}</p>
+            <div style="font-weight:bold; color:#00e6e6; margin-top:4px; margin-bottom:2px;">Inhoud:</div>
+            <p style="margin: 0 0 8px 0;">{{ \Illuminate\Support\Str::limit($news->content, 150) }}</p>
+
+            <a href="{{ route('news.show', $news->id) }}" style="
+                display: inline-block;
+                background: #00e6e6;
+                color: #181c2f;
+                font-weight: bold;
+                padding: 0.6rem 1.5rem;
+                border-radius: 8px;
+                text-decoration: none;
+                margin-top: 2px;
+                margin-bottom: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                transition: background 0.2s, color 0.2s;
+            " onmouseover="this.style.background='#00b3b3';this.style.color='#fff';" onmouseout="this.style.background='#00e6e6';this.style.color='#181c2f';">
+                👁 Bekijk nieuws
+            </a>
 
             {{-- Alleen admin ziet bewerk/verwijder acties --}}
             @if(auth()->check() && auth()->user()->isAdmin())

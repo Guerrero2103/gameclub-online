@@ -30,11 +30,18 @@
     @endforeach
 
     @auth
-        <form action="{{ route('comments.store', $news) }}" method="POST">
+        <button id="showCommentFormBtn" type="button" style="margin-bottom:1rem;">Plaats een reactie</button>
+        <form id="commentForm" action="{{ route('comments.store', $news) }}" method="POST" style="display:none;">
             @csrf
             <textarea name="content" rows="3" required style="width:100%;"></textarea>
             <button type="submit">Plaats reactie</button>
         </form>
+        <script>
+            document.getElementById('showCommentFormBtn').addEventListener('click', function() {
+                document.getElementById('commentForm').style.display = 'block';
+                this.style.display = 'none';
+            });
+        </script>
     @else
         <p><a href="{{ route('login') }}">Log in</a> om te reageren.</p>
     @endauth

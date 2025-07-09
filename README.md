@@ -12,16 +12,16 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - **Gebruikersrollen:** Er zijn gewone gebruikers en admins. Admins kunnen andere gebruikers beheren en admin maken.
 - **Profielpagina:** Elke gebruiker heeft een eigen profiel met gebruikersnaam, verjaardag, profielfoto en een korte tekst over zichzelf. Profielen zijn voor iedereen zichtbaar.
 - **Nieuws:** Admins kunnen nieuws toevoegen, bewerken en verwijderen. Iedereen kan nieuws lezen en reacties plaatsen.
+- **Reactiesysteem bij nieuws:** Gebruikers kunnen reageren op nieuwsitems. Admins en de eigenaar van een reactie kunnen deze verwijderen.
 - **FAQ:** Veelgestelde vragen zijn gegroepeerd per categorie. Admins kunnen vragen en categorieën beheren. Gebruikers kunnen zelf vragen voorstellen.
-- **Contact:** Bezoekers kunnen een bericht sturen via het contactformulier. Admins kunnen deze berichten bekijken.
-- **Reactiesysteem:** Gebruikers kunnen reageren op nieuwsitems.
+- **Contact:** Bezoekers kunnen een bericht sturen via het contactformulier. Admins kunnen deze berichten bekijken in een apart dashboard.
 - **Beveiliging:** Alleen admins kunnen bij admin-pagina's. Alle formulieren zijn beveiligd tegen CSRF en XSS.
 
 ## Extra features
 
-- Admin dashboard voor contactberichten
-- Reactiesysteem bij nieuws
-- FAQ-suggesties door gebruikers
+- Admin dashboard voor contactberichten: admins kunnen alle ontvangen berichten bekijken en beheren.
+- Reactiesysteem bij nieuws: gebruikers kunnen reageren op nieuws, admins kunnen reacties beheren.
+- FAQ-suggesties door gebruikers: gebruikers kunnen vragen voorstellen, admins kunnen deze goedkeuren of verwijderen.
 
 ## Installatie
 
@@ -72,9 +72,6 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - `resources/views/` – Alle pagina's en formulieren
 - `database/seeders/` – Voorbeelddata voor de database
 
-## Screenshots
-
-_Voeg hier enkele screenshots toe van de belangrijkste pagina's (login, dashboard, profiel, nieuws, FAQ, adminbeheer, enz.)_
 
 ## Gebruikte bronnen
 
@@ -83,4 +80,11 @@ _Voeg hier enkele screenshots toe van de belangrijkste pagina's (login, dashboar
 - [PHP documentatie](https://www.php.net/docs)
 - [Stack Overflow](https://stackoverflow.com/)
 - AI code assistent chatlog
+
+## Recente verbeteringen
+- Duidelijke labels toegevoegd voor titel en inhoud bij nieuwsberichten in het overzicht.
+- Opvallende “Bekijk nieuws” knop toegevoegd bij elk nieuwsitem.
+- Kleine ruimtes toegevoegd tussen onderdelen voor een rustigere uitstraling.
+- Reactieformulier op de detailpagina van nieuws is nu alleen zichtbaar na klikken op een knop.
+- Fout met namespace in de CommentController opgelost.
 
