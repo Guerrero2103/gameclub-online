@@ -12,6 +12,7 @@
             <a href="/">Home</a> |
             <a href="/dashboard">Dashboard</a> |
             <a href="/news">Nieuws</a> |
+            <a href="/forum">Forum</a> |
             <a href="/faq">FAQ</a> |
             <a href="/contact">Contact</a> |
 

@@ -16,6 +16,7 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - **FAQ:** Veelgestelde vragen zijn gegroepeerd per categorie. Admins kunnen vragen en categorieën beheren. Gebruikers kunnen zelf vragen voorstellen.
 - **Contact:** Bezoekers kunnen een bericht sturen via het contactformulier. Admins kunnen deze berichten bekijken in een apart dashboard.
 - **Beveiliging:** Alleen admins kunnen bij admin-pagina's. Alle formulieren zijn beveiligd tegen CSRF en XSS.
+- **Forum/discussiefunctionaliteit:** Gebruikers kunnen topics aanmaken en reageren op topics in het forum. Alleen ingelogde gebruikers kunnen posten.
 
 ## Extra features
 
@@ -82,6 +83,9 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - AI code assistent chatlog
 
 ## Recente verbeteringen
+- Forum/discussiefunctionaliteit toegevoegd: topics en reactiesysteem.
+- Navigatielink naar het forum toegevoegd.
+- Tijdzone aangepast naar Europe/Brussels.
 - Duidelijke labels toegevoegd voor titel en inhoud bij nieuwsberichten in het overzicht.
 - Opvallende “Bekijk nieuws” knop toegevoegd bij elk nieuwsitem.
 - Kleine ruimtes toegevoegd tussen onderdelen voor een rustigere uitstraling.

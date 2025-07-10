@@ -5,9 +5,12 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CommentController extends Controller
 {
+    use AuthorizesRequests;
+
     public function store(Request $request, News $news)
     {
         $request->validate([

@@ -44,6 +44,19 @@
                 👁 Bekijk nieuws
             </a>
 
+            <div style="margin-top:10px; margin-bottom:6px; font-weight:bold; color:#00e6e6;">Reacties:</div>
+            @if($news->comments->count())
+                @foreach($news->comments as $comment)
+                    <div style="margin-bottom: 8px; padding: 6px 10px; background: #181c2f; border-radius: 6px;">
+                        <strong>{{ $comment->user->username ?? $comment->user->name }}</strong> zegt:<br>
+                        <span style="display:block; margin: 2px 0 4px 0;">{{ $comment->content }}</span>
+                        <small>{{ $comment->created_at->diffForHumans() }}</small>
+                    </div>
+                @endforeach
+            @else
+                <div style="color:#aaa; margin-bottom:8px;">Nog geen reacties.</div>
+            @endif
+
             {{-- Alleen admin ziet bewerk/verwijder acties --}}
             @if(auth()->check() && auth()->user()->isAdmin())
                 <div style="margin-top: 0.5rem;">

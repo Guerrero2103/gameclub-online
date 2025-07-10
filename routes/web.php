@@ -68,3 +68,10 @@ Route::get('/debug-role', function () {
 
 Route::post('/news/{news}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comments.destroy');
+
+// Forum routes
+Route::get('/forum', [App\Http\Controllers\ForumController::class, 'index'])->name('forum.index');
+Route::get('/forum/create', [App\Http\Controllers\ForumController::class, 'create'])->middleware('auth')->name('forum.create');
+Route::post('/forum', [App\Http\Controllers\ForumController::class, 'store'])->middleware('auth')->name('forum.store');
+Route::get('/forum/{id}', [App\Http\Controllers\ForumController::class, 'show'])->name('forum.show');
+Route::post('/forum/{forum_id}/reply', [App\Http\Controllers\ForumReplyController::class, 'store'])->middleware('auth')->name('forum.reply.store');
