@@ -9,7 +9,7 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 ## Belangrijkste onderdelen
 
 - **Registratie en login:** Iedereen kan een account aanmaken en inloggen.
-- **Gebruikersrollen:** Er zijn gewone gebruikers en admins. Admins kunnen andere gebruikers beheren en admin maken.
+- **Gebruikersrollen:** Er zijn gewone gebruikers en admins. Admins kunnen andere gebruikers beheren en admin maken.x
 - **Profielpagina:** Elke gebruiker heeft een eigen profiel met gebruikersnaam, verjaardag, profielfoto en een korte tekst over zichzelf. Profielen zijn voor iedereen zichtbaar.
 - **Nieuws:** Admins kunnen nieuws toevoegen, bewerken en verwijderen. Iedereen kan nieuws lezen en reacties plaatsen.
 - **Reactiesysteem bij nieuws:** Gebruikers kunnen reageren op nieuwsitems. Admins en de eigenaar van een reactie kunnen deze verwijderen.
@@ -43,7 +43,66 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    ```
    npm install
    ```
-6. Kopieer het `.env.example` bestand naar `.env` en vul je databasegegevens in.
+6. **Maak een nieuw bestand `.env` aan** in de hoofdmap van het project en kopieer onderstaande code erin:
+
+   ```
+   APP_NAME=GameClub
+   APP_ENV=local
+   APP_KEY=base64:jqoSRfQF4OU00h4PfPUizzWbGq7jHdePxNvUWfNLeao=
+   APP_DEBUG=true
+   APP_URL=http://localhost
+
+   APP_LOCALE=nl
+   APP_FALLBACK_LOCALE=en
+   APP_FAKER_LOCALE=nl_BE
+
+   APP_MAINTENANCE_DRIVER=file
+
+   PHP_CLI_SERVER_WORKERS=4
+
+   BCRYPT_ROUNDS=12
+
+   FILESYSTEM_DRIVER=public
+
+   LOG_CHANNEL=stack
+   LOG_LEVEL=debug
+
+   DB_CONNECTION=sqlite
+   # Of gebruik mysql:
+   # DB_CONNECTION=mysql
+   # DB_HOST=127.0.0.1
+   # DB_PORT=3306
+   # DB_DATABASE=gameclub
+   # DB_USERNAME=root
+   # DB_PASSWORD=
+
+   SESSION_DRIVER=database
+   SESSION_LIFETIME=120
+   SESSION_ENCRYPT=false
+
+   BROADCAST_CONNECTION=log
+   FILESYSTEM_DISK=public
+   QUEUE_CONNECTION=sync
+
+   CACHE_STORE=file
+
+   REDIS_CLIENT=phpredis
+   REDIS_HOST=127.0.0.1
+   REDIS_PASSWORD=null
+   REDIS_PORT=6379
+
+   MAIL_MAILER=smtp
+   MAIL_HOST=sandbox.smtp.mailtrap.io
+   MAIL_PORT=2525
+   MAIL_USERNAME=c000b4830b7881
+   MAIL_PASSWORD=4c747ae1f70ff7   
+   MAIL_ENCRYPTION=tls
+   MAIL_FROM_ADDRESS=noreply@gameclub.be
+   MAIL_FROM_NAME="GameClub"
+
+   VITE_APP_NAME="${APP_NAME}"
+   ```
+
 7. Maak de database aan en voer de migraties en seeders uit:
    ```
    php artisan migrate:fresh --seed
@@ -52,11 +111,17 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    ```
    php artisan key:generate
    ```
-9. Start de ontwikkelserver:
+9. **Bouw de front-end assets met Vite:**
+   ```
+   npm run build
+   ```
+   *(Of gebruik `npm run dev` tijdens ontwikkeling)*
+
+10. Start de ontwikkelserver:
    ```
    php artisan serve
    ```
-10. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
+11. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## Testaccounts
 
@@ -73,7 +138,6 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - `resources/views/` – Alle pagina's en formulieren
 - `database/seeders/` – Voorbeelddata voor de database
 
-
 ## Gebruikte bronnen
 
 - [Laravel documentatie](https://laravel.com/docs)
@@ -83,6 +147,7 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - AI code assistent chatlog
 
 ## Recente verbeteringen
+
 - Forum/discussiefunctionaliteit toegevoegd: topics en reactiesysteem.
 - Navigatielink naar het forum toegevoegd.
 - Tijdzone aangepast naar Europe/Brussels.
@@ -91,4 +156,3 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - Kleine ruimtes toegevoegd tussen onderdelen voor een rustigere uitstraling.
 - Reactieformulier op de detailpagina van nieuws is nu alleen zichtbaar na klikken op een knop.
 - Fout met namespace in de CommentController opgelost.
-
