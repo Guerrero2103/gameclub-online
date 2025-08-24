@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="username">Gebruikersnaam:</label>
-            <input type="text" name="username" id="username" value="{{ old('username', $profile->username ?? '') }}" required>
+            <input type="text" name="username" id="username" value="{{ old('username', $user->username ?? '') }}" required>
         </div>
 
         <div class="form-group">

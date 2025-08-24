@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FaqSuggestionController;
 
+// Auth routes laden
+require __DIR__.'/auth.php';
+
 Route::get('/', fn() => view('welcome'))->name('home');
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/make', [NewsController::class, 'create'])->name('news.make'); // News make route moet VOOR de {news} route staan

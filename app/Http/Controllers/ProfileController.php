@@ -16,7 +16,7 @@ class ProfileController extends Controller
         if (!$profile) {
             $profile = $user->playerCard()->create([
                 'user_id' => $user->id,
-                'username' => '',
+                'username' => '', // Dit wordt niet meer gebruikt voor username
                 'birthday' => null,
                 'about' => '',
                 'profile_picture' => null,
@@ -37,19 +37,20 @@ class ProfileController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
             'birthday' => 'nullable|date',
             'about' => 'nullable|string',
             'profile_picture' => 'nullable|image|max:2048',
         ]);
 
-        // ✅ Update naam van gebruiker
+        // ✅ Update naam en username van gebruiker
         $user->name = $validated['name'];
+        $user->username = $validated['username'];
         $user->save();
 
-        // ✅ Update profiel (zonder 'name')
+        // ✅ Update profiel (zonder 'name' en 'username')
         $profileData = $validated;
-        unset($profileData['name']);
+        unset($profileData['name'], $profileData['username']);
 
         if ($request->hasFile('profile_picture')) {
             $path = $request->file('profile_picture')->store('profile_pictures', 'public');

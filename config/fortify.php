@@ -22,7 +22,7 @@ return [
     'views' => true,
 
     'features' => [
-        Features::registration(),
+        // Features::registration(), // Uitgeschakeld - gebruik custom controller
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::updateProfileInformation(),

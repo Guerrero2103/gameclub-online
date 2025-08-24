@@ -17,11 +17,11 @@ class FortifyServiceProvider extends ServiceProvider
     {
         // Views voor Fortify
         Fortify::loginView(fn () => view('auth.login'));
-        Fortify::registerView(fn () => view('auth.register'));
+        // Fortify::registerView(fn () => view('auth.register')); // Uitgeschakeld - gebruik custom controller
         Fortify::requestPasswordResetLinkView(fn () => view('auth.forgot-password'));
         Fortify::resetPasswordView(fn ($request) => view('auth.reset-password', ['request' => $request]));
 
-        // Registratie actie registreren
-        Fortify::createUsersUsing(CreateNewUser::class);
+        // Registratie actie uitschakelen - gebruik custom controller
+        // Fortify::createUsersUsing(CreateNewUser::class);
     }
 }
