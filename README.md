@@ -48,6 +48,7 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    ```
    APP_NAME=GameClub
    APP_ENV=local
+   APP_KEY=
    APP_DEBUG=true
    APP_URL=http://localhost
 
@@ -114,23 +115,29 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    ```
    php artisan migrate:fresh --seed
    ```
-10. **Bouw de front-end assets met Vite:**
+10. **Bouw de front-end assets met Vite** (BELANGRIJK: doe dit vóór je de server start):
     ```
     npm run build
     ```
     *(Of gebruik `npm run dev` tijdens ontwikkeling)*
 
-11. Start de ontwikkelserver:
+11. **Maak de storage link aan** (voor profielfoto's en uploads):
+    ```
+    php artisan storage:link
+    ```
+
+12. Start de ontwikkelserver:
     ```
     php artisan serve
     ```
-12. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
+13. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## Belangrijke opmerkingen
 
 - **Volgorde is cruciaal**: Zorg dat je eerst `php artisan key:generate` uitvoert voordat je de migraties start
 - **SQLite database**: Het project gebruikt standaard SQLite. Zorg dat je `touch database/database.sqlite` uitvoert om het databasebestand aan te maken
-- **Front-end assets**: Je moet `npm run build` uitvoeren om de CSS en JavaScript bestanden te genereren voordat de site correct werkt
+- **Front-end assets**: Je MOET `npm run build` uitvoeren om de CSS en JavaScript bestanden te genereren voordat de site correct werkt
+- **Storage link**: Voor profielfoto's moet je ook `php artisan storage:link` uitvoeren om de storage map toegankelijk te maken
 
 ## Testaccounts
 
