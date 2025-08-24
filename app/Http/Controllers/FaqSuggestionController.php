@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\FaqSuggestion;
+use App\Models\HelpEntry;
+use App\Models\HelpGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -37,9 +39,31 @@ class FaqSuggestionController extends Controller
     public function approve(FaqSuggestion $suggestion)
     {
         $this->authorize('manage-faq');
-        $suggestion->approved = true;
-        $suggestion->save();
-        return back()->with('success', 'Suggestie goedgekeurd!');
+        
+        try {
+            // Mark the suggestion as approved
+            $suggestion->approved = true;
+            $suggestion->save();
+            
+            // Create a new FAQ entry from the suggestion
+            // First, get or create a default category for approved suggestions
+            $defaultCategory = HelpGroup::firstOrCreate(
+                ['name' => 'Algemeen'],
+                ['name' => 'Algemeen']
+            );
+            
+            // Create the FAQ entry
+            HelpEntry::create([
+                'help_group_id' => $defaultCategory->id,
+                'question' => $suggestion->question,
+                'answer' => $suggestion->explanation ?: 'Deze vraag is goedgekeurd door een admin.',
+            ]);
+            
+            return back()->with('success', 'Suggestie goedgekeurd en FAQ toegevoegd!');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Error approving FAQ suggestion:', ['error' => $e->getMessage()]);
+            return back()->with('error', 'Er is een fout opgetreden bij het goedkeuren van de suggestie.');
+        }
     }
 
     public function destroy(FaqSuggestion $suggestion)
