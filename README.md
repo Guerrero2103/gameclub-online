@@ -146,6 +146,47 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 - **Front-end assets**: Je MOET `npm run build` uitvoeren om de CSS en JavaScript bestanden te genereren voordat de site correct werkt
 - **Storage link**: Voor profielfoto's moet je ook `php artisan storage:link` uitvoeren om de storage map toegankelijk te maken
 
+## Veelvoorkomende problemen en oplossingen
+
+Ik heb deze problemen gekregen tijdens de installatie. Hier zijn de oplossingen:
+
+### ❌ Vite manifest not found error
+**Foutmelding:**
+```
+Illuminate\Foundation\ViteManifestNotFoundException
+Vite manifest not found at: /path/to/project/public/build/manifest.json
+```
+
+**Oplossing:**
+```bash
+npm run build
+```
+
+### ❌ Permissie problemen met node_modules
+**Foutmelding:**
+```
+Error: EPERM: operation not permitted, uv_cwd
+```
+
+**Oplossing:**
+```bash
+rm -rf node_modules
+npm install
+npm run build
+```
+
+### ❌ APP_KEY error
+**Foutmelding:**
+```
+Unable to set application key. No APP_KEY variable was found in the .env file.
+```
+
+**Oplossing:**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
 ## Testaccounts
 
 - **Admin:**  
