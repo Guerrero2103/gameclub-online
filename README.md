@@ -45,6 +45,8 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    ```
 6. **Maak een nieuw bestand `.env` aan** in de hoofdmap van het project en kopieer onderstaande code erin:
 
+   **Belangrijk:** De `.env` file wordt niet meegestuurd in de GitHub repository om veiligheidsredenen. Je moet deze zelf aanmaken door `.env.example` te kopiëren.
+
    ```
    APP_NAME=GameClub
    APP_ENV=local
@@ -101,6 +103,11 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    MAIL_FROM_NAME="GameClub"
 
    VITE_APP_NAME="${APP_NAME}"
+   ```
+
+   **Snelle manier:** Je kunt ook gewoon dit commando uitvoeren:
+   ```bash
+   cp .env.example .env
    ```
 
 7. **Maak een applicatiesleutel aan** (dit moet vóór de migraties):
