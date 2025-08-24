@@ -48,7 +48,6 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    ```
    APP_NAME=GameClub
    APP_ENV=local
-   APP_KEY=base64:jqoSRfQF4OU00h4PfPUizzWbGq7jHdePxNvUWfNLeao=
    APP_DEBUG=true
    APP_URL=http://localhost
 
@@ -88,8 +87,8 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
 
    REDIS_CLIENT=phpredis
    REDIS_HOST=127.0.0.1
-   REDIS_PASSWORD=null
    REDIS_PORT=6379
+   REDIS_PASSWORD=null
 
    MAIL_MAILER=smtp
    MAIL_HOST=sandbox.smtp.mailtrap.io
@@ -103,25 +102,35 @@ Gameclub Online is een website waar gamers samenkomen om nieuws te delen, vragen
    VITE_APP_NAME="${APP_NAME}"
    ```
 
-7. Maak de database aan en voer de migraties en seeders uit:
-   ```
-   php artisan migrate:fresh --seed
-   ```
-8. Maak een applicatiesleutel aan:
+7. **Maak een applicatiesleutel aan** (dit moet vóór de migraties):
    ```
    php artisan key:generate
    ```
-9. **Bouw de front-end assets met Vite:**
+8. **Maak de SQLite database aan:**
    ```
-   npm run build
+   touch database/database.sqlite
    ```
-   *(Of gebruik `npm run dev` tijdens ontwikkeling)*
+9. **Voer de migraties en seeders uit:**
+   ```
+   php artisan migrate:fresh --seed
+   ```
+10. **Bouw de front-end assets met Vite:**
+    ```
+    npm run build
+    ```
+    *(Of gebruik `npm run dev` tijdens ontwikkeling)*
 
-10. Start de ontwikkelserver:
-   ```
-   php artisan serve
-   ```
-11. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
+11. Start de ontwikkelserver:
+    ```
+    php artisan serve
+    ```
+12. Open de site in je browser op [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+## Belangrijke opmerkingen
+
+- **Volgorde is cruciaal**: Zorg dat je eerst `php artisan key:generate` uitvoert voordat je de migraties start
+- **SQLite database**: Het project gebruikt standaard SQLite. Zorg dat je `touch database/database.sqlite` uitvoert om het databasebestand aan te maken
+- **Front-end assets**: Je moet `npm run build` uitvoeren om de CSS en JavaScript bestanden te genereren voordat de site correct werkt
 
 ## Testaccounts
 
