@@ -194,6 +194,22 @@ php artisan key:generate
   E-mail: admin@ehb.be  
   Wachtwoord: Password!321
 
+## Mailtrap contact page
+
+Bij het sturen van bericht via het contact pagina, maakt men gebruik van de website Mailtrap.io.
+U maakt een account aan, vervolgens gaat u naar deze link hier https://mailtrap.io/inboxes .
+Het aanmaken van een project nadien open je het.
+Vervang volgende elementen (_PORT/ _USERNAME/ _PASSWORD) op basis van uw project gegevens in de .env file.
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=c000b4830b7881
+MAIL_PASSWORD=4c747ae1f70ff7   
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@gameclub.be
+MAIL_FROM_NAME="GameClub"
+
 ## Belangrijke bestanden
 
 - `routes/web.php` – Alle routes van de site
